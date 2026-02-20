@@ -6,7 +6,7 @@
   <title>Colombia Payroll Guide — 2026 Framework</title>
   <!-- ── SEO & SOCIAL META TAGS ─────────────────────── -->
   <meta name="description" content="A free interactive guide for international managers on how Colombian payroll works — ordinary & integral salary, social security, mandatory benefits, and an employer cost calculator. 2026 legal framework."/>
-  <meta name="author" content="Your Name"/>
+  <meta name="author" content="Jeison Rios"/>
   <meta name="keywords" content="Colombia payroll, Colombian salary, SMMLV 2026, integral salary, social security Colombia, EPS AFP ARL, cesantias, prima servicios, labor law Colombia"/>
 
   <!-- Open Graph (LinkedIn, Facebook, WhatsApp) -->
@@ -25,7 +25,6 @@
   <meta name="twitter:title" content="Colombia Payroll Guide 2026 — For International Managers"/>
   <meta name="twitter:description" content="Understand how Colombian salaries, social security, and mandatory benefits work. Free interactive guide with employer cost calculator."/>
   <meta name="twitter:image" content="https://raw.githubusercontent.com/jarcvon0663/colombian_salary/main/metaimg.png"/>
-  <meta name="twitter:creator" content="@YourTwitterHandle"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -815,7 +814,18 @@
     <a class="nav-link" href="#calculator" onclick="closeMenu()"><span class="nav-icon">🧮</span> Cost Calculator</a>
 
     <div class="sidebar-footer">
-      <p>Based on <strong>Colombian Labor Code (CST)</strong> and official SMMLV values effective January 2026.<br><br>1 EUR ≈ 4,300 COP</p>
+      <p>Based on <strong>Colombian Labor Code (CST)</strong> and official SMMLV values effective January 2026.</p>
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:6px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.72rem;">
+          <span style="color:rgba(255,255,255,0.45);">🇺🇸 1 USD</span>
+          <span id="sidebar-usd" style="font-family:'JetBrains Mono',monospace;color:var(--gold-light);">⏳</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.72rem;">
+          <span style="color:rgba(255,255,255,0.45);">🇪🇺 1 EUR</span>
+          <span id="sidebar-eur" style="font-family:'JetBrains Mono',monospace;color:var(--gold-light);">⏳</span>
+        </div>
+        <div id="sidebar-rate-date" style="font-size:0.65rem;color:rgba(255,255,255,0.25);margin-top:2px;text-align:right;"></div>
+      </div>
     </div>
   </nav>
 
@@ -834,19 +844,20 @@
         </div>
         <div class="hero-divider"></div>
         <div class="hero-stat">
-          <span class="hero-stat-val">≈ €407</span>
-          <span class="hero-stat-label">Approx. in Euros</span>
+          <span class="hero-stat-val" id="hero-smmlv-eur">⏳</span>
+          <span class="hero-stat-label">Min. Wage in Euros</span>
         </div>
         <div class="hero-divider"></div>
         <div class="hero-stat">
-          <span class="hero-stat-val">28.5%+</span>
+          <span class="hero-stat-val" id="hero-smmlv-usd">⏳</span>
+          <span class="hero-stat-label">Min. Wage in Dollars</span>
+        </div>        
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-val">66.2%+</span>
           <span class="hero-stat-label">Employer SS on top</span>
         </div>
-        <div class="hero-divider"></div>
-        <div class="hero-stat">
-          <span class="hero-stat-val">2</span>
-          <span class="hero-stat-label">Salary Structures</span>
-        </div>
+        
       </div>
     </div>
 
@@ -1428,6 +1439,29 @@
               <span class="result-label" style="font-size:0.78rem;color:var(--slate);">Cost over gross/integral salary</span>
               <span class="result-val" id="r-pct" style="color:var(--teal);">—</span>
             </div>
+
+            <!-- CURRENCY CONVERSION -->
+            <div id="currency-block" style="margin-top:20px;padding:18px 20px;background:#f7f9fc;border-radius:10px;border:1px solid #e4ecf7;display:none;">
+              <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--slate);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+                🌐 Real-time conversion
+                <span id="trm-source" style="font-weight:400;font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--teal);"></span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div style="background:white;border-radius:8px;padding:14px 16px;border:1px solid #e4ecf7;text-align:center;">
+                  <div style="font-size:0.7rem;color:var(--slate);margin-bottom:4px;">🇺🇸 US Dollar</div>
+                  <div id="r-usd" style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--navy);">—</div>
+                  <div id="trm-usd" style="font-size:0.68rem;font-family:'JetBrains Mono',monospace;color:var(--slate);margin-top:2px;"></div>
+                </div>
+                <div style="background:white;border-radius:8px;padding:14px 16px;border:1px solid #e4ecf7;text-align:center;">
+                  <div style="font-size:0.7rem;color:var(--slate);margin-bottom:4px;">🇪🇺 Euro</div>
+                  <div id="r-eur" style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--navy);">—</div>
+                  <div id="trm-eur" style="font-size:0.68rem;font-family:'JetBrains Mono',monospace;color:var(--slate);margin-top:2px;"></div>
+                </div>
+              </div>
+              <div id="currency-error" style="display:none;font-size:0.75rem;color:var(--red);margin-top:10px;text-align:center;">
+                ⚠️ Could not fetch live rates. Check your connection and try again.
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1643,6 +1677,7 @@
     const resultsEl = document.getElementById('calcResults');
     resultsEl.classList.add('visible');
     resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    showConversion(total);
   }
 
   function calculateIntegral(salary, arlRate) {
@@ -1686,10 +1721,121 @@
     const resultsEl = document.getElementById('calcResults');
     resultsEl.classList.add('visible');
     resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    showConversion(total);
+  }
+
+  // ── CURRENCY CONVERSION ──────────────────────────────
+  let cachedRates = null;
+  let cacheTimestamp = null;
+  const CACHE_TTL = 60 * 60 * 1000; // 1 hour
+
+  async function fetchRates() {
+    const now = Date.now();
+    if (cachedRates && cacheTimestamp && (now - cacheTimestamp < CACHE_TTL)) {
+      return cachedRates;
+    }
+    // open.er-api.com — free, no API key required, supports COP
+    const res = await fetch('https://open.er-api.com/v6/latest/COP');
+    if (!res.ok) throw new Error('Rate fetch failed');
+    const data = await res.json();
+    if (data.result !== 'success') throw new Error('API returned error');
+    cachedRates = data;
+    cacheTimestamp = now;
+    return data;
+  }
+
+  async function showConversion(totalCOP) {
+    const block    = document.getElementById('currency-block');
+    const errEl    = document.getElementById('currency-error');
+    const usdEl    = document.getElementById('r-usd');
+    const eurEl    = document.getElementById('r-eur');
+    const trmSource = document.getElementById('trm-source');
+    const trmUsd   = document.getElementById('trm-usd');
+    const trmEur   = document.getElementById('trm-eur');
+
+    block.style.display = 'block';
+    errEl.style.display = 'none';
+    usdEl.textContent = '⏳';
+    eurEl.textContent = '⏳';
+    trmSource.textContent = 'loading...';
+
+    try {
+      const data = await fetchRates();
+      // data.rates.USD = how many USD per 1 COP
+      const rateUSD = data.rates['USD'];
+      const rateEUR = data.rates['EUR'];
+
+      if (!rateUSD || !rateEUR) throw new Error('Missing rates');
+
+      const usd = totalCOP * rateUSD;
+      const eur = totalCOP * rateEUR;
+
+      usdEl.textContent = `$${usd.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2})} USD`;
+      eurEl.textContent = `€${eur.toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2})} EUR`;
+
+      const copPerUsd = Math.round(1 / rateUSD).toLocaleString('es-CO');
+      const copPerEur = Math.round(1 / rateEUR).toLocaleString('es-CO');
+
+      // Format date from Unix timestamp
+      const dateStr = data.time_last_update_utc
+        ? new Date(data.time_last_update_utc).toLocaleDateString('en-US', {year:'numeric', month:'short', day:'numeric'})
+        : 'today';
+
+      trmSource.textContent = `ExchangeRate-API · ${dateStr}`;
+      trmUsd.textContent    = `1 USD ≈ $${copPerUsd} COP`;
+      trmEur.textContent    = `1 EUR ≈ $${copPerEur} COP`;
+
+    } catch (e) {
+      usdEl.textContent = '—';
+      eurEl.textContent = '—';
+      trmSource.textContent = '';
+      errEl.style.display = 'block';
+      console.error('Currency conversion error:', e);
+    }
   }
 
   // Initialize transport state on page load
   onSalaryChange();
+
+  // ── LIVE RATES ON PAGE LOAD ──────────────────────────
+  async function initLiveRates() {
+    try {
+      const data = await fetchRates();
+      const rateUSD = data.rates['USD'];
+      const rateEUR = data.rates['EUR'];
+      if (!rateUSD || !rateEUR) return;
+
+      const copPerUsd = Math.round(1 / rateUSD).toLocaleString('es-CO');
+      const copPerEur = Math.round(1 / rateEUR).toLocaleString('es-CO');
+
+      // Hero: SMMLV in EUR
+      const smmlvEur = (1750905 * rateEUR).toFixed(0);
+      document.getElementById('hero-smmlv-eur').textContent =
+        `≈ €${Number(smmlvEur).toLocaleString('de-DE')}`;
+
+      // Hero: SMMLV in USD
+      const smmlvUsd = (1750905 * rateUSD).toFixed(0);
+      document.getElementById('hero-smmlv-usd').textContent =
+        `≈ $${Number(smmlvUsd).toLocaleString('en-US')}`;
+
+      // Sidebar rates
+      document.getElementById('sidebar-usd').textContent = `$${copPerUsd} COP`;
+      document.getElementById('sidebar-eur').textContent = `$${copPerEur} COP`;
+
+      const dateStr = data.time_last_update_utc
+        ? new Date(data.time_last_update_utc).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'})
+        : '';
+      document.getElementById('sidebar-rate-date').textContent = dateStr ? `Live · ${dateStr}` : '';
+
+    } catch(e) {
+      document.getElementById('hero-smmlv-eur').textContent = '≈ €—';
+      document.getElementById('hero-smmlv-usd').textContent = '≈ $—';
+      document.getElementById('sidebar-usd').textContent = '—';
+      document.getElementById('sidebar-eur').textContent = '—';
+    }
+  }
+
+  initLiveRates();
 </script>
 </body>
 </html>
