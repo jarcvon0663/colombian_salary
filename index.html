@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Colombia Payroll Guide — 2026 Framework</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --navy: #0b1d3a;
+      --navy-mid: #132848;
+      --navy-light: #1e3a5f;
+      --gold: #c8963a;
+      --gold-light: #e2b96a;
+      --gold-pale: #f5e6c8;
+      --teal: #1a9e8f;
+      --teal-light: #22c4b1;
+      --red: #c0392b;
+      --slate: #4a5568;
+      --light: #f7f9fc;
+      --white: #ffffff;
+      --border: rgba(200,150,58,0.25);
+      --shadow: 0 4px 32px rgba(11,29,58,0.12);
+      --sidebar-w: 280px;
+      --header-h: 64px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light);
+      color: var(--navy);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── TOP BAR ─────────────────────────────────────────── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--header-h);
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+      border-bottom: 2px solid var(--gold);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .topbar-brand {
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    .topbar-flag {
+      width: 32px; height: 22px; border-radius: 3px; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .flag-y { background: #fcd116; flex: 2; }
+    .flag-b { background: #003087; flex: 1; }
+    .flag-r { background: #ce1126; flex: 1; }
+
+    .topbar-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      letter-spacing: 0.01em;
+    }
+    .topbar-title span { color: var(--gold-light); }
+
+    .topbar-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      background: rgba(200,150,58,0.15);
+      color: var(--gold-light);
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      padding: 4px 10px;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column; gap: 5px; cursor: pointer;
+      background: none; border: none; padding: 6px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--white); border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── LAYOUT ──────────────────────────────────────────── */
+    .layout {
+      display: flex;
+      padding-top: var(--header-h);
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ─────────────────────────────────────────── */
+    .sidebar {
+      position: fixed;
+      top: var(--header-h);
+      left: 0; bottom: 0;
+      width: var(--sidebar-w);
+      background: var(--navy);
+      overflow-y: auto;
+      z-index: 50;
+      padding: 28px 0 40px;
+      border-right: 1px solid rgba(200,150,58,0.2);
+      transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+    }
+
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    .nav-section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 20px 24px 8px;
+      opacity: 0.8;
+    }
+    .nav-section-label:first-child { padding-top: 0; }
+
+    .nav-link {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 24px;
+      text-decoration: none;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.82rem;
+      font-weight: 500;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .nav-link:hover { color: var(--white); background: rgba(255,255,255,0.05); border-left-color: var(--gold); }
+    .nav-link.active { color: var(--white); border-left-color: var(--gold-light); background: rgba(200,150,58,0.12); }
+    .nav-link .nav-icon { font-size: 0.95rem; width: 18px; text-align: center; }
+
+    .sidebar-footer {
+      margin: 28px 24px 0;
+      padding: 16px;
+      background: rgba(200,150,58,0.1);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .sidebar-footer p {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+    .sidebar-footer strong { color: var(--gold-light); }
+
+    /* ── MAIN CONTENT ────────────────────────────────────── */
+    .main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      padding: 48px 48px 80px;
+      max-width: 980px;
+    }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-light) 100%);
+      border-radius: 16px;
+      padding: 56px 48px;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(200,150,58,0.25);
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(200,150,58,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -40px; left: 20%;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(26,158,143,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--gold-light);
+      background: rgba(200,150,58,0.15);
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      padding: 4px 12px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      position: relative; z-index: 1;
+    }
+    .hero h1 em { color: var(--gold-light); font-style: normal; }
+    .hero p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+      max-width: 560px;
+      line-height: 1.7;
+      position: relative; z-index: 1;
+    }
+    .hero-stats {
+      display: flex; gap: 32px; margin-top: 36px;
+      flex-wrap: wrap; position: relative; z-index: 1;
+    }
+    .hero-stat {
+      display: flex; flex-direction: column;
+    }
+    .hero-stat-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--gold-light);
+    }
+    .hero-stat-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.05em;
+      margin-top: 2px;
+    }
+    .hero-divider {
+      width: 1px; background: rgba(255,255,255,0.15);
+      align-self: stretch;
+    }
+
+    /* ── SECTION ─────────────────────────────────────────── */
+    .section {
+      margin-bottom: 56px;
+      scroll-margin-top: calc(var(--header-h) + 24px);
+    }
+    .section-header {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-num {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: var(--navy);
+      color: var(--gold-light);
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: 0.8rem;
+      color: var(--slate);
+      margin-top: 2px;
+    }
+
+    /* ── INFO CARDS ──────────────────────────────────────── */
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid #e4ecf7;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.2s;
+    }
+    .card:hover { box-shadow: 0 8px 48px rgba(11,29,58,0.15); }
+
+    .card-grid { display: grid; gap: 20px; }
+    .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    /* ── HIGHLIGHT BOX ───────────────────────────────────── */
+    .highlight-box {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      border-left: 4px solid var(--gold);
+      display: flex; align-items: flex-start; gap: 20px;
+    }
+    .highlight-box-icon { font-size: 2rem; flex-shrink: 0; margin-top: 2px; }
+    .highlight-box-text h4 {
+      color: var(--gold-light);
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .highlight-box-text p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.875rem;
+      line-height: 1.65;
+    }
+    .highlight-box-text strong { color: var(--white); }
+
+    /* ── SS CONTRIBUTION CARDS ───────────────────────────── */
+    .ss-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 24px; }
+
+    .ss-card {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid #e4ecf7;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .ss-card:hover { transform: translateY(-2px); box-shadow: 0 12px 48px rgba(11,29,58,0.15); }
+
+    .ss-card-header {
+      background: var(--navy);
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .ss-card-icon { font-size: 1.3rem; }
+    .ss-card-title { color: var(--white); font-weight: 600; font-size: 0.9rem; }
+    .ss-card-abbr {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold-light);
+      background: rgba(200,150,58,0.15);
+      border: 1px solid rgba(200,150,58,0.4);
+      border-radius: 3px;
+      padding: 3px 8px;
+    }
+
+    .ss-card-body { padding: 20px; }
+
+    .total-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--navy);
+      background: var(--gold-pale);
+      border: 1px solid rgba(200,150,58,0.4);
+      border-radius: 6px;
+      padding: 6px 14px;
+      margin-bottom: 14px;
+    }
+
+    .contribution-bar {
+      display: flex; border-radius: 6px; overflow: hidden;
+      height: 32px; margin-bottom: 14px;
+    }
+    .bar-employer {
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 0.72rem; font-weight: 600;
+      transition: width 0.6s ease;
+    }
+    .bar-employee {
+      background: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 0.72rem; font-weight: 600;
+    }
+
+    .contribution-legend {
+      display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.77rem; color: var(--slate);
+    }
+    .legend-dot {
+      width: 10px; height: 10px; border-radius: 2px;
+    }
+    .dot-employer { background: var(--navy); }
+    .dot-employee { background: var(--teal); }
+
+    /* ── PARAFISCAL ──────────────────────────────────────── */
+    .para-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f4fa;
+    }
+    .para-row:last-child { border-bottom: none; }
+    .para-name { font-size: 0.88rem; font-weight: 500; color: var(--navy); }
+    .para-desc { font-size: 0.75rem; color: var(--slate); margin-top: 1px; }
+    .para-pct {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem; font-weight: 500;
+      color: var(--gold);
+    }
+
+    /* ── BENEFITS TABLE ──────────────────────────────────── */
+    .benefits-grid { display: grid; gap: 16px; }
+
+    .benefit-card {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid #e4ecf7;
+      padding: 20px 24px;
+      display: flex; gap: 20px; align-items: flex-start;
+      box-shadow: var(--shadow);
+      transition: border-color 0.2s;
+    }
+    .benefit-card:hover { border-color: var(--gold); }
+
+    .benefit-icon-wrap {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--navy); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    .benefit-content h4 {
+      font-weight: 600; font-size: 0.95rem; color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .benefit-content p { font-size: 0.82rem; color: var(--slate); line-height: 1.55; }
+    .benefit-timing {
+      margin-left: auto; flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      background: #f0f4fa;
+      color: var(--navy);
+      border-radius: 4px;
+      padding: 4px 10px;
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+
+    /* ── COMPARISON TABLE ────────────────────────────────── */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .compare-table th {
+      padding: 16px 20px;
+      text-align: left;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .compare-table th:first-child { background: #f0f4fa; color: var(--slate); }
+    .compare-table th.col-ordinary { background: var(--navy); color: var(--white); }
+    .compare-table th.col-integral { background: var(--teal); color: var(--white); }
+
+    .compare-table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid #f0f4fa;
+      color: var(--slate);
+      vertical-align: top;
+    }
+    .compare-table td:first-child { font-weight: 600; color: var(--navy); background: #fafbfd; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: #f7f9fc; }
+    .compare-table tr:hover td:first-child { background: #f0f4fa; }
+
+    .check { color: var(--teal); font-weight: 700; }
+    .cross { color: var(--red); font-weight: 700; }
+
+    /* ── INTEGRAL SALARY VISUAL ──────────────────────────── */
+    .integral-visual {
+      background: var(--navy);
+      border-radius: 14px;
+      padding: 36px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(200,150,58,0.3);
+      position: relative; overflow: hidden;
+    }
+    .integral-visual::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 250px; height: 250px;
+      background: radial-gradient(circle, rgba(200,150,58,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .integral-equation {
+      display: flex; align-items: center; gap: 16px;
+      flex-wrap: wrap; position: relative; z-index: 1;
+    }
+    .eq-box {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 18px 24px;
+      text-align: center;
+    }
+    .eq-box.gold-box {
+      background: rgba(200,150,58,0.15);
+      border-color: var(--gold);
+    }
+    .eq-box-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+    .eq-box-label { font-size: 0.72rem; color: rgba(255,255,255,0.55); margin-top: 4px; }
+    .eq-op { font-size: 1.5rem; color: rgba(255,255,255,0.4); font-weight: 300; }
+
+    .integral-note {
+      font-size: 0.8rem; color: rgba(255,255,255,0.55);
+      margin-top: 20px; padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      position: relative; z-index: 1;
+      line-height: 1.6;
+    }
+
+    /* ── ALERT / NOTE BOX ────────────────────────────────── */
+    .alert-box {
+      border-radius: 10px;
+      padding: 18px 22px;
+      display: flex; gap: 14px; align-items: flex-start;
+      font-size: 0.85rem; line-height: 1.65;
+    }
+    .alert-box.warning {
+      background: #fff8ec;
+      border: 1px solid rgba(200,150,58,0.4);
+      color: #6b4a10;
+    }
+    .alert-box.danger {
+      background: #fff5f5;
+      border: 1px solid rgba(192,57,43,0.3);
+      color: #7b1f1f;
+    }
+    .alert-box.info {
+      background: #eef8f7;
+      border: 1px solid rgba(26,158,143,0.3);
+      color: #1a4a45;
+    }
+    .alert-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── PILA BOX ────────────────────────────────────────── */
+    .pila-box {
+      background: linear-gradient(135deg, var(--teal) 0%, #0f7a6d 100%);
+      border-radius: 12px; padding: 24px 28px;
+      display: flex; align-items: center; gap: 20px;
+      margin-top: 24px;
+    }
+    .pila-icon { font-size: 2rem; }
+    .pila-text h4 { color: var(--white); font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+    .pila-text p { color: rgba(255,255,255,0.8); font-size: 0.82rem; line-height: 1.5; }
+
+    /* ── MINI TABLE ──────────────────────────────────────── */
+    .mini-table { width: 100%; border-collapse: collapse; font-size: 0.855rem; }
+    .mini-table th {
+      background: #f0f4fa;
+      padding: 10px 16px;
+      text-align: left;
+      font-size: 0.75rem;
+      color: var(--slate);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .mini-table td {
+      padding: 11px 16px;
+      border-bottom: 1px solid #f0f4fa;
+      color: var(--slate);
+    }
+    .mini-table td:first-child { font-weight: 500; color: var(--navy); }
+    .mini-table tr:last-child td { border-bottom: none; }
+    .mini-table .highlight-cell {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--navy); font-weight: 600;
+    }
+
+    /* ── CALCULATOR ──────────────────────────────────────── */
+    .calc-wrap {
+      background: var(--white);
+      border-radius: 14px;
+      border: 1px solid #e4ecf7;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .calc-header {
+      background: var(--navy);
+      padding: 20px 28px;
+    }
+    .calc-header h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .calc-header p { font-size: 0.78rem; color: rgba(255,255,255,0.55); }
+    .calc-body { padding: 28px; }
+
+    .calc-group { margin-bottom: 20px; }
+    .calc-label { font-size: 0.8rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; display: block; }
+    .calc-input-row { display: flex; gap: 12px; align-items: center; }
+    .calc-input {
+      flex: 1;
+      border: 1.5px solid #d8e4f0;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--navy);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .calc-input:focus { border-color: var(--gold); }
+    .calc-select {
+      border: 1.5px solid #d8e4f0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      color: var(--navy);
+      background: white; cursor: pointer;
+      outline: none;
+    }
+    .calc-select:focus { border-color: var(--gold); }
+
+    .calc-btn {
+      width: 100%;
+      background: var(--navy);
+      color: var(--white);
+      border: none; border-radius: 8px;
+      padding: 13px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .calc-btn:hover { background: var(--navy-light); }
+
+    .calc-results {
+      margin-top: 24px;
+      display: none;
+    }
+    .calc-results.visible { display: block; }
+    .calc-results-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f0f4fa;
+    }
+    .result-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #f7f9fc;
+      font-size: 0.855rem;
+    }
+    .result-row:last-child { border-bottom: none; }
+    .result-label { color: var(--slate); }
+    .result-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500; color: var(--navy);
+      font-size: 0.85rem;
+    }
+    .result-row.total {
+      margin-top: 8px; padding-top: 14px;
+      border-top: 2px solid var(--navy);
+      border-bottom: none;
+      font-weight: 700;
+    }
+    .result-row.total .result-label { color: var(--navy); font-weight: 700; }
+    .result-row.total .result-val { color: var(--gold); font-size: 0.95rem; }
+    .result-section { font-weight: 600; color: var(--navy); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 12px 0 4px; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 1000px) {
+      .ss-grid { grid-template-columns: 1fr; }
+      .card-grid-2 { grid-template-columns: 1fr; }
+      .card-grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; padding: 28px 20px 60px; }
+      .hamburger { display: flex; }
+      .hero { padding: 36px 24px; }
+      .hero-stats { gap: 20px; }
+      .hero-divider { display: none; }
+      .card-grid-3 { grid-template-columns: 1fr; }
+      .integral-equation { flex-direction: column; align-items: flex-start; }
+      .compare-table { font-size: 0.8rem; }
+      .compare-table th, .compare-table td { padding: 10px 12px; }
+    }
+
+    /* overlay */
+    .overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 49;
+      backdrop-filter: blur(2px);
+    }
+    .overlay.visible { display: block; }
+
+    /* ── SCROLL REVEAL ───────────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.in-view { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-brand">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="topbar-flag">
+      <div class="flag-y"></div>
+      <div class="flag-b"></div>
+      <div class="flag-r"></div>
+    </div>
+    <span class="topbar-title">Colombia <span>Payroll Guide</span></span>
+  </div>
+  <span class="topbar-badge">2026 Legal Framework</span>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <span class="nav-section-label">Overview</span>
+    <a class="nav-link active" href="#intro" onclick="closeMenu()"><span class="nav-icon">🏠</span> Introduction</a>
+    <a class="nav-link" href="#minimum-wage" onclick="closeMenu()"><span class="nav-icon">💵</span> Minimum Wage 2026</a>
+
+    <span class="nav-section-label">Salary Structures</span>
+    <a class="nav-link" href="#ordinary" onclick="closeMenu()"><span class="nav-icon">📋</span> Ordinary Salary</a>
+    <a class="nav-link" href="#benefits" onclick="closeMenu()"><span class="nav-icon">🎁</span> Mandatory Benefits</a>
+    <a class="nav-link" href="#social-security" onclick="closeMenu()"><span class="nav-icon">🛡️</span> Social Security</a>
+    <a class="nav-link" href="#parafiscal" onclick="closeMenu()"><span class="nav-icon">🏢</span> Parafiscal Contributions</a>
+
+    <span class="nav-section-label">Advanced</span>
+    <a class="nav-link" href="#integral" onclick="closeMenu()"><span class="nav-icon">💼</span> Integral Salary</a>
+    <a class="nav-link" href="#comparison" onclick="closeMenu()"><span class="nav-icon">⚖️</span> Ordinary vs Integral</a>
+
+    <span class="nav-section-label">Tools</span>
+    <a class="nav-link" href="#calculator" onclick="closeMenu()"><span class="nav-icon">🧮</span> Cost Calculator</a>
+
+    <div class="sidebar-footer">
+      <p>Based on <strong>Colombian Labor Code (CST)</strong> and official SMMLV values effective January 2026.<br><br>1 EUR ≈ 4,300 COP</p>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- HERO -->
+    <div class="hero reveal" id="intro">
+      <div class="hero-tag">OFFICIAL 2026 REFERENCE GUIDE</div>
+      <h1>Understanding <em>Colombian</em><br>Payroll & Labor Costs</h1>
+      <p>A comprehensive guide for European and international managers on how salaries, benefits, and employer contributions work in Colombia under the 2026 legal framework.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-val">$1,750,905</span>
+          <span class="hero-stat-label">Min. Wage (COP / month)</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-val">≈ €407</span>
+          <span class="hero-stat-label">Approx. in Euros</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-val">28.5%+</span>
+          <span class="hero-stat-label">Employer SS on top</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-val">2</span>
+          <span class="hero-stat-label">Salary Structures</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MINIMUM WAGE -->
+    <section class="section reveal" id="minimum-wage">
+      <div class="section-header">
+        <div class="section-num">01</div>
+        <div>
+          <div class="section-title">Minimum Wage &amp; Key Values (2026)</div>
+          <div class="section-subtitle">Statutory Monthly Minimum Wage (SMMLV) — official values effective January 2026</div>
+        </div>
+      </div>
+
+      <div class="card-grid card-grid-2">
+        <div class="card">
+          <h3>💵 Base SMMLV</h3>
+          <div style="font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--navy);margin:8px 0;">$1,750,905 <span style="font-size:1rem;color:var(--slate);">COP</span></div>
+          <p style="font-size:0.82rem;color:var(--slate);line-height:1.6;">This is the minimum remuneration any worker must receive for a full regular working schedule. No employment contract may set a lower amount.</p>
+        </div>
+        <div class="card">
+          <h3>🚌 Transportation Allowance</h3>
+          <div style="font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--navy);margin:8px 0;">$249,095 <span style="font-size:1rem;color:var(--slate);">COP</span></div>
+          <p style="font-size:0.82rem;color:var(--slate);line-height:1.6;">Mandatory for employees earning up to <strong>2 SMMLV ($3,501,810 COP/month)</strong>. Not included in the Social Security calculation base (IBC).</p>
+        </div>
+      </div>
+
+      <div class="alert-box info" style="margin-top:20px;">
+        <span class="alert-icon">ℹ️</span>
+        <div>The SMMLV is adjusted every year through a governmental decree. All salary thresholds (for integral salary, transport allowance eligibility, parafiscal exemptions, etc.) are expressed as multiples of the SMMLV, so they adjust automatically each year.</div>
+      </div>
+    </section>
+
+    <!-- ORDINARY SALARY -->
+    <section class="section reveal" id="ordinary">
+      <div class="section-header">
+        <div class="section-num">02</div>
+        <div>
+          <div class="section-title">Ordinary Salary Structure</div>
+          <div class="section-subtitle">The most common employment model in Colombia — for employees earning below 13 SMMLV/month</div>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <div class="highlight-box-icon">📌</div>
+        <div class="highlight-box-text">
+          <h4>How it works</h4>
+          <p>Under the ordinary structure, the employee receives a <strong>monthly base wage</strong> plus a transport allowance (if eligible). On top of this, the employer must separately calculate and pay <strong>mandatory legal benefits</strong> (Prima, Cesantías, Interest on Severance) at specific times of year, plus monthly Social Security contributions. This structure applies to the vast majority of Colombian workers.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>📊 Total Annual Cost to Employer (Example: 1 SMMLV)</h3>
+        <table class="mini-table" style="margin-top:12px;">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Monthly</th>
+              <th>Annual</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Base Salary</td>
+              <td class="highlight-cell">$1,750,905</td>
+              <td class="highlight-cell">$21,010,860</td>
+              <td>Gross monthly salary</td>
+            </tr>
+            <tr>
+              <td>Transport Allowance</td>
+              <td class="highlight-cell">$249,095</td>
+              <td class="highlight-cell">$2,989,140</td>
+              <td>If applicable (≤ 2 SMMLV)</td>
+            </tr>
+            <tr>
+              <td>Health (8.5%)</td>
+              <td class="highlight-cell">$148,827</td>
+              <td class="highlight-cell">$1,785,924</td>
+              <td>Employer portion only</td>
+            </tr>
+            <tr>
+              <td>Pension (12%)</td>
+              <td class="highlight-cell">$210,109</td>
+              <td class="highlight-cell">$2,521,308</td>
+              <td>Employer portion only</td>
+            </tr>
+            <tr>
+              <td>ARL (0.522%)</td>
+              <td class="highlight-cell">$9,140</td>
+              <td class="highlight-cell">$109,680</td>
+              <td>Risk level I (lowest)</td>
+            </tr>
+            <tr>
+              <td>Parafiscales (9%*)</td>
+              <td class="highlight-cell">$157,581</td>
+              <td class="highlight-cell">$1,890,972</td>
+              <td>*SENA+ICBF may be exempt</td>
+            </tr>
+            <tr>
+              <td>Prima de Servicios</td>
+              <td class="highlight-cell">$145,909</td>
+              <td class="highlight-cell">$1,750,905</td>
+              <td>30 days/year</td>
+            </tr>
+            <tr>
+              <td>Cesantías</td>
+              <td class="highlight-cell">$145,909</td>
+              <td class="highlight-cell">$1,750,905</td>
+              <td>1 month per year</td>
+            </tr>
+            <tr>
+              <td>Interest on Cesantías</td>
+              <td class="highlight-cell">$17,509</td>
+              <td class="highlight-cell">$210,109</td>
+              <td>12% annually on Cesantías</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MANDATORY BENEFITS -->
+    <section class="section reveal" id="benefits">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <div>
+          <div class="section-title">Mandatory Legal Benefits</div>
+          <div class="section-subtitle">Paid separately at specific times — calculated on the base salary (transport allowance may be included in some calculations)</div>
+        </div>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon-wrap">🏅</div>
+          <div class="benefit-content">
+            <h4>Prima de Servicios (Service Bonus)</h4>
+            <p>Equivalent to <strong>30 days of salary per year</strong>, paid in two equal installments — one by June 30 and the other no later than December 20. Transport allowance is included in the calculation base for this benefit.</p>
+          </div>
+          <div class="benefit-timing">June / Dec</div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon-wrap">💰</div>
+          <div class="benefit-content">
+            <h4>Cesantías (Severance Fund)</h4>
+            <p>Equivalent to <strong>one month of salary for each year worked</strong>. The amount is calculated through December 31 of each year and must be deposited in the employee's designated severance fund administrator by February 14 of the following year.</p>
+          </div>
+          <div class="benefit-timing">Feb (deposit)</div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon-wrap">📈</div>
+          <div class="benefit-content">
+            <h4>Interest on Cesantías (Intereses)</h4>
+            <p>An additional payment equal to <strong>12% annually</strong> on the total cesantías accrued during the year. Unlike the severance itself, this interest is paid <strong>directly to the employee</strong> — not into the fund — in January of the following year.</p>
+          </div>
+          <div class="benefit-timing">Jan (direct)</div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon-wrap">🏖️</div>
+          <div class="benefit-content">
+            <h4>Vacations (Vacaciones)</h4>
+            <p><strong>15 business days of paid leave per year</strong>. This is NOT included in any benefit factor — it must always be paid separately when the employee takes vacation time. It applies under both salary structures.</p>
+          </div>
+          <div class="benefit-timing">When taken</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL SECURITY -->
+    <section class="section reveal" id="social-security">
+      <div class="section-header">
+        <div class="section-num">04</div>
+        <div>
+          <div class="section-title">Social Security Contributions</div>
+          <div class="section-subtitle">Calculated on the employee's full monthly salary (IBC — Ingreso Base de Cotización). Paid monthly via PILA.</div>
+        </div>
+      </div>
+
+      <div class="ss-grid">
+        <!-- HEALTH -->
+        <div class="ss-card">
+          <div class="ss-card-header">
+            <span class="ss-card-icon">❤️</span>
+            <span class="ss-card-title">Health Insurance</span>
+            <span class="ss-card-abbr">EPS</span>
+          </div>
+          <div class="ss-card-body">
+            <div class="total-badge">Total: 12.5% of salary</div>
+            <div class="contribution-bar">
+              <div class="bar-employer" style="width:68%;">8.5% Employer</div>
+              <div class="bar-employee" style="width:32%;">4% Employee</div>
+            </div>
+            <div class="contribution-legend">
+              <div class="legend-item"><div class="legend-dot dot-employer"></div>Employer: 8.5%</div>
+              <div class="legend-item"><div class="legend-dot dot-employee"></div>Employee: 4% (withheld)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PENSION -->
+        <div class="ss-card">
+          <div class="ss-card-header">
+            <span class="ss-card-icon">🏦</span>
+            <span class="ss-card-title">Pension Fund</span>
+            <span class="ss-card-abbr">AFP</span>
+          </div>
+          <div class="ss-card-body">
+            <div class="total-badge">Total: 16% of salary</div>
+            <div class="contribution-bar">
+              <div class="bar-employer" style="width:75%;">12% Employer</div>
+              <div class="bar-employee" style="width:25%;">4% Employee</div>
+            </div>
+            <div class="contribution-legend">
+              <div class="legend-item"><div class="legend-dot dot-employer"></div>Employer: 12%</div>
+              <div class="legend-item"><div class="legend-dot dot-employee"></div>Employee: 4% (withheld)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ARL -->
+        <div class="ss-card">
+          <div class="ss-card-header">
+            <span class="ss-card-icon">⛑️</span>
+            <span class="ss-card-title">Occupational Risks</span>
+            <span class="ss-card-abbr">ARL</span>
+          </div>
+          <div class="ss-card-body">
+            <div class="total-badge">100% paid by employer</div>
+            <div class="contribution-bar">
+              <div class="bar-employer" style="width:100%;">Varies by risk level</div>
+            </div>
+            <div class="contribution-legend">
+              <div class="legend-item"><div class="legend-dot dot-employer"></div>Risk Level I: 0.522%</div>
+              <div class="legend-item"><div class="legend-dot dot-employer" style="background:var(--gold);"></div>Risk Level V: up to 8.7%</div>
+            </div>
+            <p style="font-size:0.75rem;color:var(--slate);margin-top:10px;">Rate assigned by the insurance company based on the nature of the job activities and workplace hazard classification.</p>
+          </div>
+        </div>
+
+        <!-- PILA INFO -->
+        <div class="ss-card">
+          <div class="ss-card-header" style="background:var(--teal);">
+            <span class="ss-card-icon">💻</span>
+            <span class="ss-card-title">PILA System</span>
+            <span class="ss-card-abbr" style="border-color:rgba(255,255,255,0.4);color:rgba(255,255,255,0.9);">Monthly</span>
+          </div>
+          <div class="ss-card-body">
+            <p style="font-size:0.82rem;color:var(--slate);line-height:1.65;margin-bottom:14px;">All three social security contributions (Health, Pension, ARL) must be paid together through the <strong>PILA electronic system</strong> every month. The employer withholds the employee's 8% share and pays the full amount.</p>
+            <div class="alert-box warning" style="font-size:0.78rem;">
+              <span class="alert-icon">⚠️</span>
+              Late payment incurs interest and may result in fines. Employees cannot access health services if contributions are overdue.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARAFISCAL -->
+    <section class="section reveal" id="parafiscal">
+      <div class="section-header">
+        <div class="section-num">05</div>
+        <div>
+          <div class="section-title">Parafiscal Contributions</div>
+          <div class="section-subtitle">100% employer-paid — calculated on the total monthly payroll</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:20px;">
+        <div class="para-row">
+          <div>
+            <div class="para-name">🎓 SENA</div>
+            <div class="para-desc">National Learning Service — vocational training programs</div>
+          </div>
+          <div class="para-pct">2%</div>
+        </div>
+        <div class="para-row">
+          <div>
+            <div class="para-name">👶 ICBF</div>
+            <div class="para-desc">Colombian Institute of Family Welfare — child protection programs</div>
+          </div>
+          <div class="para-pct">3%</div>
+        </div>
+        <div class="para-row">
+          <div>
+            <div class="para-name">👨‍👩‍👧 Caja de Compensación Familiar</div>
+            <div class="para-desc">Family Compensation Fund — subsidies, recreation, housing for employees</div>
+          </div>
+          <div class="para-pct">4%</div>
+        </div>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid #f0f4fa;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-weight:600;color:var(--navy);">Total Parafiscal Burden</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:1.2rem;color:var(--navy);font-weight:700;">9%</span>
+        </div>
+      </div>
+
+      <div class="alert-box warning">
+        <span class="alert-icon">⚠️</span>
+        <div>
+          <strong>SENA + ICBF + Health (EPS Employer Share) Exemption — Law 1607/2012 &amp; Decree 114-1:</strong><br><br>
+          Certain employers are exempt from three contributions for employees earning <strong>less than 10 SMMLV</strong> (~$17.5M COP/month), subject to legal conditions:
+          <ul style="margin: 8px 0 0 16px; line-height: 1.9; font-size: 0.84rem;">
+            <li><strong>SENA:</strong> 2% exemption</li>
+            <li><strong>ICBF:</strong> 3% exemption</li>
+            <li><strong>Health EPS — Employer share:</strong> 8.5% exemption (the employee's 4% is still withheld and paid)</li>
+          </ul>
+          <br>The <strong>4% Caja de Compensación Familiar always applies</strong> and is never exempt. The employee's own SS contributions (Health 4% + Pension 4%) continue to be withheld and paid regardless of these exemptions.
+        </div>
+      </div>
+    </section>
+
+    <!-- INTEGRAL SALARY -->
+    <section class="section reveal" id="integral">
+      <div class="section-header">
+        <div class="section-num">06</div>
+        <div>
+          <div class="section-title">Integral Salary (Salario Integral)</div>
+          <div class="section-subtitle">Executive-level compensation — for management earning ≥ 13 SMMLV per month</div>
+        </div>
+      </div>
+
+      <div class="integral-visual">
+        <p style="color:rgba(255,255,255,0.55);font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px;">2026 Minimum Integral Salary Calculation</p>
+        <div class="integral-equation">
+          <div class="eq-box">
+            <div class="eq-box-val">10 SMMLV</div>
+            <div class="eq-box-label">Salary Component</div>
+            <div style="font-size:0.72rem;color:rgba(200,150,58,0.8);margin-top:4px;">$17,509,050 COP</div>
+          </div>
+          <div class="eq-op">+</div>
+          <div class="eq-box">
+            <div class="eq-box-val">30%</div>
+            <div class="eq-box-label">Benefit Factor</div>
+            <div style="font-size:0.72rem;color:rgba(200,150,58,0.8);margin-top:4px;">$5,252,715 COP</div>
+          </div>
+          <div class="eq-op">=</div>
+          <div class="eq-box gold-box">
+            <div class="eq-box-val">$22,761,765</div>
+            <div class="eq-box-label">Min. Integral Salary</div>
+            <div style="font-size:0.72rem;color:rgba(200,150,58,0.8);margin-top:4px;">13 SMMLV ≈ €5,293</div>
+          </div>
+        </div>
+        <div class="integral-note">
+          📌 <strong style="color:rgba(255,255,255,0.8);">The 30% Benefit Factor covers:</strong> Service Bonus (Prima), Severance Pay (Cesantías), and Interest on Severance. Vacations are <em>not</em> included — they must always be paid separately. The integral salary <strong style="color:rgba(255,255,255,0.8);">may never be lower than 13 SMMLV</strong>; if the SMMLV increases, the salary must be adjusted accordingly.
+        </div>
+      </div>
+
+      <div class="card-grid card-grid-2">
+        <div class="card">
+          <h3>✅ What it simplifies</h3>
+          <ul style="list-style:none;font-size:0.855rem;color:var(--slate);line-height:2;">
+            <li>✔ No separate Prima payment (June/Dec)</li>
+            <li>✔ No separate Cesantías deposit (Feb)</li>
+            <li>✔ No separate interest on Cesantías (Jan)</li>
+            <li>✔ Single monthly transfer to employee</li>
+            <li>✔ Lower administrative burden for HR</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>⚠️ What still applies</h3>
+          <ul style="list-style:none;font-size:0.855rem;color:var(--slate);line-height:2;">
+            <li>📌 Vacations (15 days/year — always separate)</li>
+            <li>📌 SS contributions on <strong>70% of salary</strong></li>
+            <li>📌 Overtime and surcharges still apply</li>
+            <li>📌 Legal indemnities if dismissed</li>
+            <li>📌 Must be expressly agreed in writing</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="alert-box danger" style="margin-top:20px;">
+        <span class="alert-icon">🔑</span>
+        <div><strong>Key SS difference:</strong> Under integral salary, Health and Pension contributions are calculated on <strong>70% of the agreed integral salary</strong> (not 100%), reducing the contribution base but potentially affecting the employee's future pension amount.</div>
+      </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section class="section reveal" id="comparison">
+      <div class="section-header">
+        <div class="section-num">07</div>
+        <div>
+          <div class="section-title">Ordinary vs. Integral Salary</div>
+          <div class="section-subtitle">Side-by-side comparison to help you choose the right structure</div>
+        </div>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th style="width:220px;">Feature</th>
+              <th class="col-ordinary">📋 Ordinary Salary</th>
+              <th class="col-integral">💼 Integral Salary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Who is it for?</td>
+              <td>Employees earning &lt;13 SMMLV/month</td>
+              <td>Executives earning ≥13 SMMLV/month</td>
+            </tr>
+            <tr>
+              <td>Minimum threshold</td>
+              <td>$1,750,905 COP (1 SMMLV)</td>
+              <td>$22,761,765 COP (13 SMMLV)</td>
+            </tr>
+            <tr>
+              <td>Transport Allowance</td>
+              <td><span class="check">✔</span> If salary ≤ 2 SMMLV</td>
+              <td><span class="cross">✘</span> Never applicable</td>
+            </tr>
+            <tr>
+              <td>Prima de Servicios</td>
+              <td><span class="cross">✘</span> Paid separately (June & Dec)</td>
+              <td><span class="check">✔</span> Included in 30% factor</td>
+            </tr>
+            <tr>
+              <td>Cesantías</td>
+              <td><span class="cross">✘</span> Deposited to fund every Feb</td>
+              <td><span class="check">✔</span> Included in 30% factor</td>
+            </tr>
+            <tr>
+              <td>Interest on Cesantías</td>
+              <td><span class="cross">✘</span> Paid directly in Jan</td>
+              <td><span class="check">✔</span> Included in 30% factor</td>
+            </tr>
+            <tr>
+              <td>Vacations (15 days)</td>
+              <td><span class="cross">✘</span> Always paid when taken</td>
+              <td><span class="cross">✘</span> Always paid when taken</td>
+            </tr>
+            <tr>
+              <td>SS contribution base</td>
+              <td>100% of salary (IBC)</td>
+              <td>70% of integral salary</td>
+            </tr>
+            <tr>
+              <td>Overtime / surcharges</td>
+              <td><span class="cross">✘</span> Must be paid separately</td>
+              <td><span class="cross">✘</span> Must be paid separately</td>
+            </tr>
+            <tr>
+              <td>Payroll complexity</td>
+              <td>High — multiple annual payments</td>
+              <td>Low — single monthly transfer</td>
+            </tr>
+            <tr>
+              <td>Must be in writing?</td>
+              <td>Standard contract</td>
+              <td><span class="cross">✘</span> Must expressly state "Salario Integral"</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section class="section reveal" id="calculator">
+      <div class="section-header">
+        <div class="section-num">08</div>
+        <div>
+          <div class="section-title">Employer Cost Calculator</div>
+          <div class="section-subtitle">Estimate the total monthly cost of hiring an employee under ordinary salary structure</div>
+        </div>
+      </div>
+
+      <div class="calc-wrap">
+        <div class="calc-header">
+          <h3>🧮 Monthly Employer Cost Estimator</h3>
+          <p>Supports both Ordinary and Integral salary structures — all values in COP.</p>
+        </div>
+        <div class="calc-body">
+
+          <!-- SALARY TYPE -->
+          <div class="calc-group">
+            <label class="calc-label">Salary Structure Type</label>
+            <div style="display:flex;gap:0;border:1.5px solid #d8e4f0;border-radius:8px;overflow:hidden;">
+              <button id="btnOrdinary" onclick="setSalaryType('ordinary')" style="flex:1;padding:10px;background:var(--navy);color:white;border:none;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;transition:background 0.2s;">📋 Ordinary Salary</button>
+              <button id="btnIntegral" onclick="setSalaryType('integral')" style="flex:1;padding:10px;background:white;color:var(--slate);border:none;border-left:1.5px solid #d8e4f0;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;cursor:pointer;transition:background 0.2s;">💼 Integral Salary</button>
+            </div>
+          </div>
+
+          <!-- SALARY INPUT -->
+          <div class="calc-group">
+            <label class="calc-label" for="salary" id="salaryLabel">Monthly Gross Salary (COP)</label>
+            <div class="calc-input-row">
+              <input type="number" id="salary" class="calc-input" placeholder="e.g. 3,500,000" value="1750905" oninput="onSalaryChange()"/>
+            </div>
+            <div id="salaryHint" style="font-size:0.75rem;color:var(--slate);margin-top:6px;">Minimum: $1,750,905 COP (1 SMMLV)</div>
+          </div>
+
+          <!-- ARL -->
+          <div class="calc-group">
+            <label class="calc-label" for="riskLevel">ARL Risk Level</label>
+            <select id="riskLevel" class="calc-select">
+              <option value="0.00522">Level I — Minimal (0.522%)</option>
+              <option value="0.01044">Level II — Low (1.044%)</option>
+              <option value="0.02436">Level III — Medium (2.436%)</option>
+              <option value="0.0435">Level IV — High (4.35%)</option>
+              <option value="0.0696">Level V — Maximum (6.96%)</option>
+            </select>
+          </div>
+
+          <!-- TRANSPORT (ordinary only) -->
+          <div class="calc-group" id="transportGroup">
+            <label class="calc-label">Transport Allowance</label>
+            <label style="display:flex;align-items:center;gap:10px;font-size:0.855rem;cursor:default;user-select:none;">
+              <input type="checkbox" id="transport" checked disabled style="width:16px;height:16px;accent-color:var(--navy);cursor:default;"/>
+              <span id="transportText">Automatically included — salary ≤ 2 SMMLV ($3,501,810 COP)</span>
+            </label>
+            <div id="transportNote" style="font-size:0.74rem;color:var(--teal);margin-top:4px;">✔ $249,095 COP will be added</div>
+          </div>
+
+          <!-- EXEMPTION (ordinary only) -->
+          <div class="calc-group" id="exemptGroup">
+            <label class="calc-label">Law 1607 / Decree 114-1 Exemption</label>
+            <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.855rem;cursor:pointer;">
+              <input type="checkbox" id="exempt" style="width:16px;height:16px;margin-top:2px;accent-color:var(--navy);"/>
+              <span>Apply exemption — SENA (2%) + ICBF (3%) + Health EPS employer share (8.5%) — only if salary &lt; 10 SMMLV ($17,509,050 COP)</span>
+            </label>
+            <div id="exemptWarning" style="display:none;font-size:0.74rem;color:var(--red);margin-top:4px;">⚠️ Exemption not applicable: salary exceeds 10 SMMLV threshold.</div>
+          </div>
+
+          <button class="calc-btn" onclick="calculate()">Calculate Total Employer Cost</button>
+
+          <div class="calc-results" id="calcResults">
+            <div class="calc-results-title">📊 Monthly Cost Breakdown</div>
+
+            <div id="results-ordinary">
+              <div class="result-section">Direct Compensation</div>
+              <div class="result-row"><span class="result-label">Gross Salary</span><span class="result-val" id="r-salary">—</span></div>
+              <div class="result-row" id="row-transport"><span class="result-label">Transport Allowance</span><span class="result-val" id="r-transport">—</span></div>
+
+              <div class="result-section">Social Security (Employer Share)</div>
+              <div class="result-row"><span class="result-label" id="lbl-health">Health EPS (8.5%)</span><span class="result-val" id="r-health">—</span></div>
+              <div class="result-row"><span class="result-label">Pension AFP (12%)</span><span class="result-val" id="r-pension">—</span></div>
+              <div class="result-row"><span class="result-label">ARL Occupational Risk</span><span class="result-val" id="r-arl">—</span></div>
+
+              <div class="result-section">Parafiscal Contributions</div>
+              <div class="result-row"><span class="result-label" id="lbl-sena">SENA (2%)</span><span class="result-val" id="r-sena">—</span></div>
+              <div class="result-row"><span class="result-label" id="lbl-icbf">ICBF (3%)</span><span class="result-val" id="r-icbf">—</span></div>
+              <div class="result-row"><span class="result-label">Caja Compensación (4%)</span><span class="result-val" id="r-caja">—</span></div>
+
+              <div class="result-section">Mandatory Benefits (Monthly Provision)</div>
+              <div class="result-row"><span class="result-label">Prima de Servicios (÷12)</span><span class="result-val" id="r-prima">—</span></div>
+              <div class="result-row"><span class="result-label">Cesantías (÷12)</span><span class="result-val" id="r-ces">—</span></div>
+              <div class="result-row"><span class="result-label">Interest on Cesantías (÷12)</span><span class="result-val" id="r-intces">—</span></div>
+              <div class="result-row"><span class="result-label">Vacations (÷12)</span><span class="result-val" id="r-vac">—</span></div>
+            </div>
+
+            <!-- INTEGRAL RESULTS -->
+            <div id="results-integral" style="display:none;">
+              <div class="result-section">Integral Salary</div>
+              <div class="result-row"><span class="result-label">Agreed Integral Salary</span><span class="result-val" id="ri-salary">—</span></div>
+              <div class="result-row"><span class="result-label" style="font-size:0.78rem;color:var(--slate);">→ of which: Salary Component (70%)</span><span class="result-val" id="ri-base">—</span></div>
+              <div class="result-row"><span class="result-label" style="font-size:0.78rem;color:var(--slate);">→ of which: Benefit Factor (30%)</span><span class="result-val" id="ri-factor">—</span></div>
+
+              <div class="result-section">SS Contribution Base = 70% of Integral Salary</div>
+              <div class="result-row"><span class="result-label">Health EPS (8.5% on 70%)</span><span class="result-val" id="ri-health">—</span></div>
+              <div class="result-row"><span class="result-label">Pension AFP (12% on 70%)</span><span class="result-val" id="ri-pension">—</span></div>
+              <div class="result-row"><span class="result-label">ARL Occupational Risk</span><span class="result-val" id="ri-arl">—</span></div>
+
+              <div class="result-section">Parafiscal Contributions (on 70%)</div>
+              <div class="result-row"><span class="result-label">SENA (2%)</span><span class="result-val" id="ri-sena">—</span></div>
+              <div class="result-row"><span class="result-label">ICBF (3%)</span><span class="result-val" id="ri-icbf">—</span></div>
+              <div class="result-row"><span class="result-label">Caja Compensación (4%)</span><span class="result-val" id="ri-caja">—</span></div>
+
+              <div class="result-section">Benefits — Included vs. Separate</div>
+              <div class="result-row"><span class="result-label">Prima + Cesantías + Interest</span><span class="result-val" style="color:var(--teal);">Included in 30% factor</span></div>
+              <div class="result-row"><span class="result-label">Vacations (÷12 provision)</span><span class="result-val" id="ri-vac">—</span></div>
+            </div>
+
+            <div class="result-row total">
+              <span class="result-label">Total Monthly Employer Cost</span>
+              <span class="result-val" id="r-total">—</span>
+            </div>
+            <div class="result-row" style="border-bottom:none;padding-bottom:0;">
+              <span class="result-label" style="font-size:0.78rem;color:var(--slate);">Cost over gross/integral salary</span>
+              <span class="result-val" id="r-pct" style="color:var(--teal);">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-box info" style="margin-top:20px;">
+        <span class="alert-icon">💡</span>
+        <div>This calculator provides an estimate based on the 2026 legal framework. Actual costs may vary based on specific collective agreements, company size, sector, and individual employee circumstances. Always consult a Colombian labor attorney or HR specialist for binding advice.</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // ── SIDEBAR TOGGLE ──────────────────────────────────
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  const hamburger = document.getElementById('hamburgerBtn');
+
+  hamburger.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('visible');
+  });
+
+  overlay.addEventListener('click', closeMenu);
+
+  function closeMenu() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('visible');
+  }
+
+  // ── ACTIVE NAV ──────────────────────────────────────
+  const sections = document.querySelectorAll('.section, .hero');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const id = entry.target.id;
+        const active = document.querySelector(`.nav-link[href="#${id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+
+  // ── SCROLL REVEAL ────────────────────────────────────
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  // ── CALCULATOR ───────────────────────────────────────
+  const SMMLV = 1750905;
+  const TRANSPORT = 249095;
+  const THRESHOLD_TRANSPORT = SMMLV * 2;   // $3,501,810
+  const THRESHOLD_EXEMPT    = SMMLV * 10;  // $17,509,050
+  const THRESHOLD_INTEGRAL  = SMMLV * 13;  // $22,761,765
+
+  let salaryType = 'ordinary';
+
+  const fmt = (n) => new Intl.NumberFormat('es-CO', {
+    style: 'currency', currency: 'COP',
+    minimumFractionDigits: 0, maximumFractionDigits: 0
+  }).format(n);
+
+  function setSalaryType(type) {
+    salaryType = type;
+    const btnO = document.getElementById('btnOrdinary');
+    const btnI = document.getElementById('btnIntegral');
+    const transportGroup = document.getElementById('transportGroup');
+    const exemptGroup = document.getElementById('exemptGroup');
+    const salaryLabel = document.getElementById('salaryLabel');
+    const salaryHint  = document.getElementById('salaryHint');
+    const salaryInput = document.getElementById('salary');
+
+    if (type === 'ordinary') {
+      btnO.style.background = 'var(--navy)';
+      btnO.style.color = 'white';
+      btnI.style.background = 'white';
+      btnI.style.color = 'var(--slate)';
+      transportGroup.style.display = '';
+      exemptGroup.style.display = '';
+      salaryLabel.textContent = 'Monthly Gross Salary (COP)';
+      salaryHint.textContent = 'Minimum: $1,750,905 COP (1 SMMLV)';
+      if (parseFloat(salaryInput.value) < SMMLV) salaryInput.value = SMMLV;
+    } else {
+      btnI.style.background = 'var(--navy)';
+      btnI.style.color = 'white';
+      btnO.style.background = 'white';
+      btnO.style.color = 'var(--slate)';
+      transportGroup.style.display = 'none';
+      exemptGroup.style.display = 'none';
+      salaryLabel.textContent = 'Integral Salary Amount (COP)';
+      salaryHint.textContent = `Minimum: $${fmt(THRESHOLD_INTEGRAL).replace(/[^\d,.]/g,'')} COP (13 SMMLV) — lower values will not be accepted`;
+      if (parseFloat(salaryInput.value) < THRESHOLD_INTEGRAL) salaryInput.value = THRESHOLD_INTEGRAL;
+    }
+
+    // reset results
+    document.getElementById('calcResults').classList.remove('visible');
+    onSalaryChange();
+  }
+
+  function onSalaryChange() {
+    if (salaryType === 'integral') return;
+
+    const salary = parseFloat(document.getElementById('salary').value) || 0;
+    const transportCb = document.getElementById('transport');
+    const transportNote = document.getElementById('transportNote');
+    const transportText = document.getElementById('transportText');
+    const exemptCb = document.getElementById('exempt');
+    const exemptWarning = document.getElementById('exemptWarning');
+
+    // Auto transport allowance
+    if (salary <= THRESHOLD_TRANSPORT) {
+      transportCb.checked = true;
+      transportCb.disabled = true;
+      transportText.textContent = 'Automatically included — salary ≤ 2 SMMLV ($3,501,810 COP)';
+      transportNote.style.color = 'var(--teal)';
+      transportNote.textContent = '✔ $249,095 COP will be added';
+    } else {
+      transportCb.checked = false;
+      transportCb.disabled = true;
+      transportText.textContent = 'Not applicable — salary exceeds 2 SMMLV ($3,501,810 COP)';
+      transportNote.style.color = 'var(--red)';
+      transportNote.textContent = '✘ Transport allowance not included';
+    }
+
+    // Exemption eligibility warning
+    if (exemptCb.checked && salary >= THRESHOLD_EXEMPT) {
+      exemptWarning.style.display = 'block';
+    } else {
+      exemptWarning.style.display = 'none';
+    }
+  }
+
+  // Watch exempt checkbox
+  document.getElementById('exempt').addEventListener('change', onSalaryChange);
+
+  function calculate() {
+    const salary = parseFloat(document.getElementById('salary').value) || 0;
+    const arlRate = parseFloat(document.getElementById('riskLevel').value);
+
+    if (salaryType === 'ordinary') {
+      calculateOrdinary(salary, arlRate);
+    } else {
+      calculateIntegral(salary, arlRate);
+    }
+  }
+
+  function calculateOrdinary(salary, arlRate) {
+    if (salary < SMMLV) {
+      alert(`Salary must be at least 1 SMMLV (${fmt(SMMLV)} COP)`);
+      return;
+    }
+
+    const transport = (salary <= THRESHOLD_TRANSPORT) ? TRANSPORT : 0;
+    const exempt = document.getElementById('exempt').checked && salary < THRESHOLD_EXEMPT;
+
+    const health  = exempt ? 0 : salary * 0.085;
+    const pension = salary * 0.12;
+    const arl     = salary * arlRate;
+    const sena    = exempt ? 0 : salary * 0.02;
+    const icbf    = exempt ? 0 : salary * 0.03;
+    const caja    = salary * 0.04;
+    const prima   = salary / 12;
+    const ces     = salary / 12;
+    const intCes  = (salary * 0.12) / 12;
+    const vac     = (salary / 360) * 15;
+
+    const total = salary + transport + health + pension + arl + sena + icbf + caja + prima + ces + intCes + vac;
+    const overhead = ((total - salary) / salary * 100).toFixed(1);
+
+    // Show ordinary results, hide integral
+    document.getElementById('results-ordinary').style.display = '';
+    document.getElementById('results-integral').style.display = 'none';
+
+    document.getElementById('r-salary').textContent    = fmt(salary);
+    document.getElementById('r-transport').textContent = transport > 0 ? fmt(transport) : '—';
+    document.getElementById('row-transport').style.opacity = transport > 0 ? '1' : '0.4';
+
+    document.getElementById('lbl-health').textContent  = exempt ? 'Health EPS (8.5%) — EXEMPT' : 'Health EPS (8.5%)';
+    document.getElementById('r-health').textContent    = exempt ? '$0' : fmt(health);
+    document.getElementById('r-health').style.color    = exempt ? 'var(--teal)' : '';
+
+    document.getElementById('r-pension').textContent   = fmt(pension);
+    document.getElementById('r-arl').textContent       = fmt(arl);
+
+    document.getElementById('lbl-sena').textContent    = exempt ? 'SENA (2%) — EXEMPT' : 'SENA (2%)';
+    document.getElementById('r-sena').textContent      = exempt ? '$0' : fmt(sena);
+    document.getElementById('r-sena').style.color      = exempt ? 'var(--teal)' : '';
+
+    document.getElementById('lbl-icbf').textContent    = exempt ? 'ICBF (3%) — EXEMPT' : 'ICBF (3%)';
+    document.getElementById('r-icbf').textContent      = exempt ? '$0' : fmt(icbf);
+    document.getElementById('r-icbf').style.color      = exempt ? 'var(--teal)' : '';
+
+    document.getElementById('r-caja').textContent      = fmt(caja);
+    document.getElementById('r-prima').textContent     = fmt(prima);
+    document.getElementById('r-ces').textContent       = fmt(ces);
+    document.getElementById('r-intces').textContent    = fmt(intCes);
+    document.getElementById('r-vac').textContent       = fmt(vac);
+    document.getElementById('r-total').textContent     = fmt(total);
+    document.getElementById('r-pct').textContent       = `+${overhead}% over gross salary`;
+
+    const resultsEl = document.getElementById('calcResults');
+    resultsEl.classList.add('visible');
+    resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function calculateIntegral(salary, arlRate) {
+    if (salary < THRESHOLD_INTEGRAL) {
+      alert(`Integral salary must be at least 13 SMMLV (${fmt(THRESHOLD_INTEGRAL)} COP). The value entered is below the legal minimum.`);
+      return;
+    }
+
+    const base70   = salary * 0.70;  // SS contribution base
+    const factor30 = salary * 0.30;
+
+    const health  = base70 * 0.085;
+    const pension = base70 * 0.12;
+    const arl     = base70 * arlRate;
+    const sena    = base70 * 0.02;
+    const icbf    = base70 * 0.03;
+    const caja    = base70 * 0.04;
+    const vac     = (salary * 0.70 / 360) * 15; // vacations on salary component
+
+    // Total: integral salary + SS employer + parafiscal + vacation provision
+    // Benefits (prima, ces, interes) are already inside the 30% factor
+    const total = salary + health + pension + arl + sena + icbf + caja + vac;
+    const overhead = ((total - salary) / salary * 100).toFixed(1);
+
+    document.getElementById('results-ordinary').style.display = 'none';
+    document.getElementById('results-integral').style.display = '';
+
+    document.getElementById('ri-salary').textContent  = fmt(salary);
+    document.getElementById('ri-base').textContent    = fmt(base70);
+    document.getElementById('ri-factor').textContent  = fmt(factor30);
+    document.getElementById('ri-health').textContent  = fmt(health);
+    document.getElementById('ri-pension').textContent = fmt(pension);
+    document.getElementById('ri-arl').textContent     = fmt(arl);
+    document.getElementById('ri-sena').textContent    = fmt(sena);
+    document.getElementById('ri-icbf').textContent    = fmt(icbf);
+    document.getElementById('ri-caja').textContent    = fmt(caja);
+    document.getElementById('ri-vac').textContent     = fmt(vac);
+    document.getElementById('r-total').textContent    = fmt(total);
+    document.getElementById('r-pct').textContent      = `+${overhead}% over integral salary`;
+
+    const resultsEl = document.getElementById('calcResults');
+    resultsEl.classList.add('visible');
+    resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // Initialize transport state on page load
+  onSalaryChange();
+</script>
+</body>
+</html>
