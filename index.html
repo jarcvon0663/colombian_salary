@@ -29,9 +29,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-
   <style>
-    :root {
+:root {
       --navy: #0b1d3a;
       --navy-mid: #132848;
       --navy-light: #1e3a5f;
@@ -743,7 +742,125 @@
       transition: opacity 0.55s ease, transform 0.55s ease;
     }
     .reveal.in-view { opacity: 1; transform: none; }
-  </style>
+/* ── AUTHOR CHIP (topbar) ────────────────────────────── */
+.author-chip {
+  display: flex; align-items: center; gap: 9px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(200,150,58,0.35);
+  border-radius: 999px;
+  padding: 4px 14px 4px 4px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.author-chip:hover {
+  background: rgba(255,255,255,0.13);
+  border-color: rgba(200,150,58,0.7);
+}
+.author-avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+  flex-shrink: 0;
+}
+.author-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+/* ── TEAM DROPDOWN ────────────────────────────────────── */
+.team-dropdown {
+  margin-left: auto;
+  position: relative;
+}
+.team-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(200,150,58,0.35);
+  border-radius: 999px;
+  padding: 5px 14px 5px 5px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  color: var(--white);
+}
+.team-btn:hover {
+  background: rgba(255,255,255,0.13);
+  border-color: rgba(200,150,58,0.7);
+}
+.team-avatars {
+  display: flex;
+  position: relative;
+  width: 46px; height: 30px;
+}
+.team-avatar-stacked {
+  width: 30px; height: 30px; border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--navy);
+  position: absolute;
+  top: 0;
+}
+.team-avatar-stacked:first-child { left: 0; z-index: 2; }
+.team-avatar-stacked.second     { left: 16px; z-index: 1; }
+.team-label {
+  font-size: 0.82rem; font-weight: 600;
+  white-space: nowrap;
+}
+.team-chevron {
+  font-size: 0.75rem;
+  color: var(--gold-light);
+  transition: transform 0.25s;
+  line-height: 1;
+}
+.team-chevron.open { transform: rotate(180deg); }
+
+.team-menu {
+  display: none;
+  position: absolute; top: calc(100% + 10px); right: 0;
+  background: var(--navy-mid);
+  border: 1px solid rgba(200,150,58,0.3);
+  border-radius: 12px;
+  padding: 8px;
+  min-width: 220px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  z-index: 200;
+  animation: menuFade 0.2s ease;
+}
+.team-menu.open { display: block; }
+@keyframes menuFade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.team-menu-label {
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); padding: 6px 12px 10px;
+}
+.team-menu-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.team-menu-item:hover { background: rgba(255,255,255,0.07); }
+.team-menu-item .author-avatar {
+  width: 36px; height: 36px;
+  border-color: rgba(200,150,58,0.5);
+}
+.team-member-info {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.team-member-name {
+  font-size: 0.85rem; font-weight: 600; color: var(--white);
+}
+.team-member-link {
+  font-size: 0.72rem; color: var(--gold-light);
+}
+
+</style>
+
 </head>
 <body>
 
@@ -760,34 +877,33 @@
     </div>
     <span class="topbar-title">Colombia <span>Payroll Guide</span></span>
   </div>
-  <style>
-    .author-chip {
-      display: flex; align-items: center; gap: 9px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(200,150,58,0.35);
-      border-radius: 999px;
-      padding: 4px 14px 4px 4px;
-    }
-    .author-avatar {
-      width: 30px; height: 30px; border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--gold);
-      flex-shrink: 0;
-    }
-    .author-name {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--white);
-      letter-spacing: 0.01em;
-      white-space: nowrap;
-    }
-  </style>
-  <a href="https://www.linkedin.com/in/jeisonrios/" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
-    <div class="author-chip" style="cursor:pointer;transition:background 0.2s,border-color 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.13)';this.style.borderColor='rgba(200,150,58,0.7)'" onmouseout="this.style.background='rgba(255,255,255,0.07)';this.style.borderColor='rgba(200,150,58,0.35)'" title="View LinkedIn profile">
-      <img src="yo.jpg" alt="Jeison Rios" class="author-avatar" onerror="this.style.display='none'"/>
-      <span class="author-name">Jeison Rios</span>
+  <div class="team-dropdown" id="teamDropdown">
+    <button class="team-btn" onclick="toggleTeam(event)" aria-expanded="false">
+      <div class="team-avatars">
+        <img src="yo.jpg" alt="Jeison Rios" class="author-avatar team-avatar-stacked" onerror="this.style.display='none'"/>
+        <img src="nadya.jpg" alt="Nadya Zabransky" class="author-avatar team-avatar-stacked second" onerror="this.style.display='none'"/>
+      </div>
+      <span class="team-label">Team</span>
+      <span class="team-chevron" id="teamChevron">▾</span>
+    </button>
+    <div class="team-menu" id="teamMenu">
+      <div class="team-menu-label">Meet the authors</div>
+      <a href="https://www.linkedin.com/in/jeisonrios/" target="_blank" rel="noopener noreferrer" class="team-menu-item">
+        <img src="yo.jpg" alt="Jeison Rios" class="author-avatar" onerror="this.style.display='none'"/>
+        <div class="team-member-info">
+          <span class="team-member-name">Jeison Rios</span>
+          <span class="team-member-link">View LinkedIn ↗</span>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/nadya-zabransky/" target="_blank" rel="noopener noreferrer" class="team-menu-item">
+        <img src="nadya.jpg" alt="Nadya Zabransky" class="author-avatar" onerror="this.style.display='none'"/>
+        <div class="team-member-info">
+          <span class="team-member-name">Nadya Zabransky</span>
+          <span class="team-member-link">View LinkedIn ↗</span>
+        </div>
+      </a>
     </div>
-  </a>
+  </div>
 </header>
 
 <div class="overlay" id="overlay"></div>
@@ -1093,7 +1209,7 @@
             </div>
             <div class="contribution-legend">
               <div class="legend-item"><div class="legend-dot dot-employer"></div>Risk Level I: 0.522%</div>
-              <div class="legend-item"><div class="legend-dot dot-employer" style="background:var(--gold);"></div>Risk Level V: up to 6.96%</div>
+              <div class="legend-item"><div class="legend-dot dot-employer" style="background:var(--gold);"></div>Risk Level V: up to 8.7%</div>
             </div>
             <p style="font-size:0.75rem;color:var(--slate);margin-top:10px;">Rate assigned by the insurance company based on the nature of the job activities and workplace hazard classification.</p>
           </div>
@@ -1474,9 +1590,8 @@
 
   </main>
 </div>
-
 <script>
-  // ── SIDEBAR TOGGLE ──────────────────────────────────
+// ── SIDEBAR TOGGLE ──────────────────────────────────
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('overlay');
   const hamburger = document.getElementById('hamburgerBtn');
@@ -1796,6 +1911,26 @@
 
   // Initialize transport state on page load
   onSalaryChange();
+
+  // ── TEAM DROPDOWN ────────────────────────────────────
+  function toggleTeam(e) {
+    e.stopPropagation();
+    const menu    = document.getElementById('teamMenu');
+    const chevron = document.getElementById('teamChevron');
+    const btn     = document.getElementById('teamDropdown').querySelector('.team-btn');
+    const isOpen  = menu.classList.toggle('open');
+    chevron.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+  }
+
+  document.addEventListener('click', () => {
+    const menu    = document.getElementById('teamMenu');
+    const chevron = document.getElementById('teamChevron');
+    if (menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      chevron.classList.remove('open');
+    }
+  });
 
   // ── LIVE RATES ON PAGE LOAD ──────────────────────────
   async function initLiveRates() {
