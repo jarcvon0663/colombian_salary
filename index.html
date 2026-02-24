@@ -926,6 +926,8 @@
     <a class="nav-link" href="#integral" onclick="closeMenu()"><span class="nav-icon">💼</span> Integral Salary</a>
     <a class="nav-link" href="#comparison" onclick="closeMenu()"><span class="nav-icon">⚖️</span> Ordinary vs Integral</a>
 
+    <a class="nav-link" href="#flexible" onclick="closeMenu()"><span class="nav-icon">🔀</span> Flexible Salary</a>
+
     <span class="nav-section-label">Tools</span>
     <a class="nav-link" href="#calculator" onclick="closeMenu()"><span class="nav-icon">🧮</span> Cost Calculator</a>
 
@@ -1431,10 +1433,80 @@
       </div>
     </section>
 
+    <!-- FLEXIBLE SALARY -->
+    <section class="section reveal" id="flexible">
+      <div class="section-header">
+        <div class="section-num">08</div>
+        <div>
+          <div class="section-title">Flexible Salary & Non-Salary Benefits</div>
+          <div class="section-subtitle">Art. 128 CST + Art. 30 Law 1393/2010 — a legal tool to optimize total compensation</div>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <div class="highlight-box-icon">⚖️</div>
+        <div class="highlight-box-text">
+          <h4>What is it?</h4>
+          <p>Under <strong>Article 128 of the Colombian Labor Code (CST)</strong>, certain payments made by the employer to the employee are not considered part of the salary for legal purposes. These are called <strong>"pagos no constitutivos de salario"</strong> (non-salary payments) or <strong>"pagos no prestacionales"</strong>. Because they are excluded from the salary base (IBC), they do not generate Social Security contributions, parafiscal charges, or mandatory benefit accruals (Prima, Cesantías, Interest).</p>
+        </div>
+      </div>
+
+      <div class="card-grid card-grid-2" style="margin-bottom:24px;">
+        <div class="card">
+          <h3>✅ Common examples</h3>
+          <ul style="list-style:none;font-size:0.855rem;color:var(--slate);line-height:2.1;">
+            <li>🍽️ Meal / food allowances</li>
+            <li>📱 Connectivity / mobile allowances</li>
+            <li>🚗 Transportation supplements (above legal allowance)</li>
+            <li>💻 Home office / equipment allowances</li>
+            <li>🎓 Education / training bonuses</li>
+            <li>🏋️ Wellness or recreation benefits</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📋 Legal requirements</h3>
+          <ul style="list-style:none;font-size:0.855rem;color:var(--slate);line-height:2.1;">
+            <li>📝 Must be agreed in writing in the contract or annex</li>
+            <li>🔒 Must not replace or substitute the base salary</li>
+            <li>📊 <strong>Cannot exceed 40%</strong> of total remuneration</li>
+            <li>💡 The remaining <strong>60%+ must be base salary</strong></li>
+            <li>🧾 Must be for a specific, documented purpose</li>
+            <li>⚠️ If not properly documented, may be reclassified as salary</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:20px;">
+        <h3>📐 The 40% Rule — Art. 30, Law 1393/2010</h3>
+        <p style="font-size:0.855rem;color:var(--slate);line-height:1.7;margin:12px 0;">Article 30 of Law 1393 of 2010 establishes a hard cap: <strong>non-salary payments may not exceed 40% of the total compensation package</strong>. This means that if an employee receives a total monthly package of $20,000,000 COP, the non-salary component can be at most $8,000,000 COP, and the base salary must be at least $12,000,000 COP.</p>
+        <div style="background:#f7f9fc;border-radius:10px;padding:20px 24px;margin-top:16px;">
+          <div style="display:flex;align-items:center;gap:0;border-radius:8px;overflow:hidden;height:44px;">
+            <div style="flex:6;background:var(--navy);display:flex;align-items:center;justify-content:center;color:white;font-size:0.8rem;font-weight:600;">Base Salary ≥ 60%</div>
+            <div style="flex:4;background:var(--gold);display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:0.8rem;font-weight:700;">Non-Salary ≤ 40%</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:0.72rem;color:var(--slate);">
+            <span>Generates SS + benefits obligations</span>
+            <span>No SS / no benefits generated</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-grid card-grid-2">
+        <div class="alert-box info" style="margin:0;">
+          <span class="alert-icon">💡</span>
+          <div><strong>Employer benefit:</strong> By structuring part of the package as non-salary payments, the employer reduces SS and parafiscal costs — since those are calculated only on the base salary IBC, not on the full package.</div>
+        </div>
+        <div class="alert-box danger" style="margin:0;">
+          <span class="alert-icon">⚠️</span>
+          <div><strong>Risk if misused:</strong> If non-salary payments are disguised as salary substitutes, or if the 40% cap is exceeded, labor courts may reclassify them as salary — triggering retroactive SS contributions, benefit recalculations, and penalties.</div>
+        </div>
+      </div>
+    </section>
+
     <!-- CALCULATOR -->
     <section class="section reveal" id="calculator">
       <div class="section-header">
-        <div class="section-num">08</div>
+        <div class="section-num">09</div>
         <div>
           <div class="section-title">Employer Cost Calculator</div>
           <div class="section-subtitle">Estimate the total monthly cost of hiring an employee under ordinary salary structure</div>
@@ -1466,6 +1538,16 @@
             <div id="salaryHint" style="font-size:0.75rem;color:var(--slate);margin-top:6px;">Minimum: $1,750,905 COP (1 SMMLV)</div>
           </div>
 
+          <!-- NON-SALARY BENEFITS (ordinary only) -->
+          <div class="calc-group" id="nonSalaryGroup">
+            <label class="calc-label">Non-Salary Benefits — Pagos no Prestacionales <span style="font-size:0.72rem;font-weight:400;color:var(--slate);">(Art. 128 CST / Art. 30 Law 1393)</span></label>
+            <div class="calc-input-row">
+              <input type="number" id="nonSalary" class="calc-input" placeholder="e.g. 500,000" value="0" min="0" oninput="onNonSalaryChange()"/>
+            </div>
+            <div id="nonSalaryHint" style="font-size:0.74rem;color:var(--slate);margin-top:6px;">These payments are added to total cost but excluded from the IBC — no SS, no benefits generated.</div>
+            <div id="nonSalaryWarning" style="display:none;font-size:0.74rem;margin-top:6px;padding:8px 12px;border-radius:6px;"></div>
+          </div>
+
           <!-- ARL -->
           <div class="calc-group">
             <label class="calc-label" for="riskLevel">ARL Risk Level</label>
@@ -1491,11 +1573,11 @@
           <!-- EXEMPTION (ordinary only) -->
           <div class="calc-group" id="exemptGroup">
             <label class="calc-label">Law 1607 / Decree 114-1 Exemption</label>
-            <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.855rem;cursor:pointer;">
-              <input type="checkbox" id="exempt" style="width:16px;height:16px;margin-top:2px;accent-color:var(--navy);"/>
-              <span>Apply exemption — SENA (2%) + ICBF (3%) + Health EPS employer share (8.5%) — only if salary &lt; 10 SMMLV ($17,509,050 COP)</span>
+            <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.855rem;cursor:default;user-select:none;">
+              <input type="checkbox" id="exempt" style="width:16px;height:16px;margin-top:2px;accent-color:var(--navy);cursor:default;"/>
+              <span id="exemptText">Apply exemption — SENA (2%) + ICBF (3%) + Health EPS employer share (8.5%) — only if salary &lt; 10 SMMLV ($17,509,050 COP)</span>
             </label>
-            <div id="exemptWarning" style="display:none;font-size:0.74rem;color:var(--red);margin-top:4px;">⚠️ Exemption not applicable: salary exceeds 10 SMMLV threshold.</div>
+            <div id="exemptNote" style="font-size:0.74rem;color:var(--teal);margin-top:4px;"></div>
           </div>
 
           <button class="calc-btn" onclick="calculate()">Calculate Total Employer Cost</button>
@@ -1505,8 +1587,9 @@
 
             <div id="results-ordinary">
               <div class="result-section">Direct Compensation</div>
-              <div class="result-row"><span class="result-label">Gross Salary</span><span class="result-val" id="r-salary">—</span></div>
+              <div class="result-row"><span class="result-label">Gross Base Salary</span><span class="result-val" id="r-salary">—</span></div>
               <div class="result-row" id="row-transport"><span class="result-label">Transport Allowance</span><span class="result-val" id="r-transport">—</span></div>
+              <div class="result-row" id="row-nonsalary"><span class="result-label">Non-Salary Benefits (Art. 128)</span><span class="result-val" id="r-nonsalary">—</span></div>
 
               <div class="result-section">Social Security (Employer Share)</div>
               <div class="result-row"><span class="result-label" id="lbl-health">Health EPS (8.5%)</span><span class="result-val" id="r-health">—</span></div>
@@ -1668,6 +1751,7 @@
       btnI.style.color = 'var(--slate)';
       transportGroup.style.display = '';
       exemptGroup.style.display = '';
+      document.getElementById('nonSalaryGroup').style.display = '';
       salaryLabel.textContent = 'Monthly Gross Salary (COP)';
       salaryHint.textContent = 'Minimum: $1,750,905 COP (1 SMMLV)';
       if (parseFloat(salaryInput.value) < SMMLV) salaryInput.value = SMMLV;
@@ -1678,6 +1762,8 @@
       btnO.style.color = 'var(--slate)';
       transportGroup.style.display = 'none';
       exemptGroup.style.display = 'none';
+      document.getElementById('nonSalaryGroup').style.display = 'none';
+      document.getElementById('nonSalary').value = 0;
       salaryLabel.textContent = 'Integral Salary Amount (COP)';
       salaryHint.textContent = `Minimum: $${fmt(THRESHOLD_INTEGRAL).replace(/[^\d,.]/g,'')} COP (13 SMMLV) — lower values will not be accepted`;
       if (parseFloat(salaryInput.value) < THRESHOLD_INTEGRAL) salaryInput.value = THRESHOLD_INTEGRAL;
@@ -1691,38 +1777,90 @@
   function onSalaryChange() {
     if (salaryType === 'integral') return;
 
-    const salary = parseFloat(document.getElementById('salary').value) || 0;
-    const transportCb = document.getElementById('transport');
+    const salary        = parseFloat(document.getElementById('salary').value) || 0;
+    const transportCb   = document.getElementById('transport');
     const transportNote = document.getElementById('transportNote');
     const transportText = document.getElementById('transportText');
-    const exemptCb = document.getElementById('exempt');
-    const exemptWarning = document.getElementById('exemptWarning');
+    const exemptCb      = document.getElementById('exempt');
+    const exemptText    = document.getElementById('exemptText');
+    const exemptNote    = document.getElementById('exemptNote');
 
     // Auto transport allowance
     if (salary <= THRESHOLD_TRANSPORT) {
-      transportCb.checked = true;
+      transportCb.checked  = true;
       transportCb.disabled = true;
       transportText.textContent = 'Automatically included — salary ≤ 2 SMMLV ($3,501,810 COP)';
       transportNote.style.color = 'var(--teal)';
       transportNote.textContent = '✔ $249,095 COP will be added';
     } else {
-      transportCb.checked = false;
+      transportCb.checked  = false;
       transportCb.disabled = true;
       transportText.textContent = 'Not applicable — salary exceeds 2 SMMLV ($3,501,810 COP)';
       transportNote.style.color = 'var(--red)';
       transportNote.textContent = '✘ Transport allowance not included';
     }
 
-    // Exemption eligibility warning
-    if (exemptCb.checked && salary >= THRESHOLD_EXEMPT) {
-      exemptWarning.style.display = 'block';
+    // Exemption — block if salary >= 10 SMMLV
+    if (salary >= THRESHOLD_EXEMPT) {
+      exemptCb.checked  = false;
+      exemptCb.disabled = true;
+      exemptText.textContent = 'Not applicable — base salary meets or exceeds 10 SMMLV ($17,509,050 COP)';
+      exemptNote.style.color = 'var(--red)';
+      exemptNote.textContent = '✘ Exemption cannot be applied at this salary level';
     } else {
-      exemptWarning.style.display = 'none';
+      exemptCb.disabled = false;
+      exemptText.textContent = 'Apply exemption — SENA (2%) + ICBF (3%) + Health EPS employer share (8.5%)';
+      exemptNote.style.color = 'var(--teal)';
+      exemptNote.textContent = exemptCb.checked
+        ? '✔ Exemption active — SENA, ICBF and Health EPS employer share will not be charged'
+        : '○ Eligible — check to apply (base salary < 10 SMMLV)';
     }
   }
 
-  // Watch exempt checkbox
+  // Watch exempt checkbox to update the note text
   document.getElementById('exempt').addEventListener('change', onSalaryChange);
+
+  function onNonSalaryChange() {
+    const salary    = parseFloat(document.getElementById('salary').value) || 0;
+    const nonSalary = parseFloat(document.getElementById('nonSalary').value) || 0;
+    const warn      = document.getElementById('nonSalaryWarning');
+    const hint      = document.getElementById('nonSalaryHint');
+
+    if (nonSalary === 0) {
+      warn.style.display = 'none';
+      hint.style.display = 'block';
+      return;
+    }
+
+    const total        = salary + nonSalary;
+    const nonSalaryPct = (nonSalary / total) * 100;
+    const max40        = salary * (40 / 60); // nonSalary that makes it exactly 40% of total
+
+    hint.style.display = 'none';
+
+    if (nonSalaryPct > 50) {
+      // Hard block: exceeds 50% — cap the value automatically
+      const cappedAt50 = salary; // at 50/50 split, nonSalary = salary
+      document.getElementById('nonSalary').value = Math.floor(cappedAt50);
+      warn.style.display = 'block';
+      warn.style.background = '#fff0f0';
+      warn.style.border = '1px solid rgba(192,57,43,0.3)';
+      warn.style.color = '#7b1f1f';
+      warn.innerHTML = `🚫 <strong>Hard limit reached:</strong> Non-salary benefits cannot represent more than 50% of total compensation. Value has been capped automatically. Legal maximum under Art. 30 Law 1393 is <strong>40%</strong>.`;
+    } else if (nonSalaryPct > 40) {
+      warn.style.display = 'block';
+      warn.style.background = '#fff8ec';
+      warn.style.border = '1px solid rgba(200,150,58,0.4)';
+      warn.style.color = '#6b4a10';
+      warn.innerHTML = `⚠️ <strong>Legal limit exceeded:</strong> Non-salary benefits represent <strong>${nonSalaryPct.toFixed(1)}%</strong> of total compensation. Art. 30 Law 1393 caps this at <strong>40%</strong>. Maximum allowed for this base salary: <strong>${fmt(Math.floor(max40))} COP</strong>.`;
+    } else {
+      warn.style.display = 'block';
+      warn.style.background = '#eef8f7';
+      warn.style.border = '1px solid rgba(26,158,143,0.3)';
+      warn.style.color = '#1a4a45';
+      warn.innerHTML = `✔ <strong>${nonSalaryPct.toFixed(1)}%</strong> of total package — within the 40% legal limit. These payments won't generate SS, benefits, or parafiscal obligations.`;
+    }
+  }
 
   function calculate() {
     const salary = parseFloat(document.getElementById('salary').value) || 0;
@@ -1742,8 +1880,18 @@
     }
 
     const transport = (salary <= THRESHOLD_TRANSPORT) ? TRANSPORT : 0;
-    const exempt = document.getElementById('exempt').checked && salary < THRESHOLD_EXEMPT;
+    const exempt    = document.getElementById('exempt').checked && salary < THRESHOLD_EXEMPT;
+    const nonSalary = parseFloat(document.getElementById('nonSalary').value) || 0;
 
+    // Validate 40% rule before calculating
+    const totalPkg     = salary + nonSalary;
+    const nonSalaryPct = nonSalary > 0 ? (nonSalary / totalPkg) * 100 : 0;
+    if (nonSalaryPct > 40) {
+      const proceed = confirm(`⚠️ Non-salary benefits represent ${nonSalaryPct.toFixed(1)}% of the total package, exceeding the 40% legal cap (Art. 30 Law 1393/2010).\n\nThe calculation will proceed but this structure may be legally challenged. Do you want to continue?`);
+      if (!proceed) return;
+    }
+
+    // SS and benefits calculated ONLY on base salary (IBC), not on non-salary
     const health  = exempt ? 0 : salary * 0.085;
     const pension = salary * 0.12;
     const arl     = salary * arlRate;
@@ -1755,7 +1903,7 @@
     const intCes  = (salary * 0.12) / 12;
     const vac     = (salary / 360) * 15;
 
-    const total = salary + transport + health + pension + arl + sena + icbf + caja + prima + ces + intCes + vac;
+    const total = salary + transport + nonSalary + health + pension + arl + sena + icbf + caja + prima + ces + intCes + vac;
     const overhead = ((total - salary) / salary * 100).toFixed(1);
 
     // Show ordinary results, hide integral
@@ -1765,6 +1913,18 @@
     document.getElementById('r-salary').textContent    = fmt(salary);
     document.getElementById('r-transport').textContent = transport > 0 ? fmt(transport) : '—';
     document.getElementById('row-transport').style.opacity = transport > 0 ? '1' : '0.4';
+
+    // Non-salary row
+    const rowNS = document.getElementById('row-nonsalary');
+    if (nonSalary > 0) {
+      document.getElementById('r-nonsalary').textContent = fmt(nonSalary) + ' ★';
+      document.getElementById('r-nonsalary').style.color = 'var(--teal)';
+      rowNS.style.opacity = '1';
+    } else {
+      document.getElementById('r-nonsalary').textContent = '—';
+      document.getElementById('r-nonsalary').style.color = '';
+      rowNS.style.opacity = '0.4';
+    }
 
     document.getElementById('lbl-health').textContent  = exempt ? 'Health EPS (8.5%) — EXEMPT' : 'Health EPS (8.5%)';
     document.getElementById('r-health').textContent    = exempt ? '$0' : fmt(health);
@@ -1788,6 +1948,12 @@
     document.getElementById('r-vac').textContent       = fmt(vac);
     document.getElementById('r-total').textContent     = fmt(total);
     document.getElementById('r-pct').textContent       = `+${overhead}% over gross salary`;
+
+    // Note about non-salary if used
+    const noteEl = document.getElementById('r-pct');
+    if (nonSalary > 0) {
+      noteEl.textContent += ` | ★ Non-salary (${nonSalaryPct.toFixed(1)}% of package — no SS/benefits)`;
+    }
 
     const resultsEl = document.getElementById('calcResults');
     resultsEl.classList.add('visible');
